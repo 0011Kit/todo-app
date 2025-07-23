@@ -1,8 +1,6 @@
 <template>
   <div>
     <h1 class="text-4xl font-extrabold mb-4  dark:text-gray-500 ">My Tasks</h1>
-
-    <!-- Search Bar Start -->
     <!-- Search Bar Start -->
     <div class="mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 w-full sm:w-auto">
@@ -40,66 +38,66 @@
     </div>
     <!-- Search Bar End -->
 
-     <!-- Listing Table Start  -->
-      <div class="overflow-x-auto">
-        <table class="min-w-full border text-sm bg-card dark:bg-gray-800 dark:border-gray-700 dark:text-gray-500 dark:hover:text-gray-300">
-          <thead class="bg-card relative dark:bg-gray-800">
-            <tr>
-              <th class="p-2 text-left indent-5">Task</th>
-              <th class="p-2 text-left">Due Date</th>
-              <th class="p-2 text-center">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-if="filteredTasks.length === 0">
-              <td colspan="3" class="text-center py-4 text-gray-500 dark:bg-gray-800 ">
-                No record found.
-              </td>
-            </tr>
 
-            <tr v-for="task in filteredTasks" :key="task.id" class="p-2 " >
-              <!-- title + tag -->
-              <td class="flex items-center gap-2 p-2">
-                <input type="checkbox" :checked="task.completed" class="accent-primary dark:accent-gray-500"  @change="toggleTask(task)" />
-                <div :class="
-                  task.completed ? 'line-through text-gray-400 bg-card  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-500 dark:hover:text-gray-300' 
-                    : isOverdue(task.dueDate) ? 'text-red-600 dark:text-red-700' : 'text-black dark:bg-gray-800 dark:border-gray-700 dark:text-gray-500'">
-                  {{ task.title }}
-                </div>            
-                <span
-                  :class="task.completed
-                    ? 'bg-green-600 text-card text-xs rounded p-0.5 dark:bg-green-900 dark:text-gray-300'
-                    : isOverdue(task.dueDate)
-                      ? 'bg-red-600 text-card text-xs rounded p-0.5  dark:bg-red-900 dark:text-gray-300'
-                      : 'text-yellow-600'"
-                >
-                  {{ task.completed ? 'Completed' : isOverdue(task.dueDate) ? 'Overdue' : '' }}
-                </span>
-              </td>
+    <!-- Listing Table Start  -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full border text-sm bg-card dark:bg-gray-800 dark:border-gray-700 dark:text-gray-500 dark:hover:text-gray-300">
+        <thead class="bg-card relative dark:bg-gray-800">
+          <tr>
+            <th class="p-2 text-left indent-5">Task</th>
+            <th class="p-2 text-left">Due Date</th>
+            <th class="p-2 text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-if="filteredTasks.length === 0">
+            <td colspan="3" class="text-center py-4 text-gray-500 dark:bg-gray-800 ">
+              No record found.
+            </td>
+          </tr>
 
-              <!-- Due Date -->
-              <td>
-                <div :class="(isOverdue(task.dueDate) && !task.completed)
-                ? 'text-red-600 dark:text-red-700' 
-                : 'text-black dark:text-gray-500'">
-                  {{ task.dueDate }}
-                </div>
-              </td>
+          <tr v-for="task in filteredTasks" :key="task.id" class="p-2 " >
+            <!-- title + tag -->
+            <td class="flex items-center gap-2 p-2">
+              <input type="checkbox" :checked="task.completed" class="accent-primary dark:accent-gray-500"  @change="toggleTask(task)" />
+              <div :class="
+                task.completed ? 'line-through text-gray-400 bg-card  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-500 dark:hover:text-gray-300' 
+                  : isOverdue(task.dueDate) ? 'text-red-600 dark:text-red-700' : 'text-black dark:bg-gray-800 dark:border-gray-700 dark:text-gray-500'">
+                {{ task.title }}
+              </div>            
+              <span
+                :class="task.completed
+                  ? 'bg-green-600 text-card text-xs rounded p-0.5 dark:bg-green-900 dark:text-gray-300'
+                  : isOverdue(task.dueDate)
+                    ? 'bg-red-600 text-card text-xs rounded p-0.5  dark:bg-red-900 dark:text-gray-300'
+                    : 'text-yellow-600'"
+              >
+                {{ task.completed ? 'Completed' : isOverdue(task.dueDate) ? 'Overdue' : '' }}
+              </span>
+            </td>
 
-              <!-- Action Buttons -->
-              <td class="text-center space-x-2 reactive flex justify-center items-center">
-                <NuxtLink :to="`/edit/${task.id}`" class="text-primary hover:underline dark:text-slate-500 dark:hover:text-slate-300" >
-                  <Icon icon="material-symbols:edit" width="24" height="24"></Icon>
-                </NuxtLink>                        
-                <button @click="deleteTask(task.id)" class="text-red-600 pt-1 items-center hover:underline  dark:text-red-900 dark:hover:text-red-700">
-                  <Icon icon="material-symbols:delete-rounded"  width="24" height="24"></Icon>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+            <!-- Due Date -->
+            <td>
+              <div :class="(isOverdue(task.dueDate) && !task.completed)
+              ? 'text-red-600 dark:text-red-700' 
+              : 'text-black dark:text-gray-500'">
+                {{ task.dueDate }}
+              </div>
+            </td>
 
+            <!-- Action Buttons -->
+            <td class="text-center space-x-2 reactive flex justify-center items-center">
+              <NuxtLink :to="`/edit/${task.id}`" class="text-primary hover:underline dark:text-slate-500 dark:hover:text-slate-300" >
+                <Icon icon="material-symbols:edit" width="24" height="24"></Icon>
+              </NuxtLink>                        
+              <button @click="deleteTask(task.id)" class="text-red-600 pt-1 items-center hover:underline  dark:text-red-900 dark:hover:text-red-700">
+                <Icon icon="material-symbols:delete-rounded"  width="24" height="24"></Icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
