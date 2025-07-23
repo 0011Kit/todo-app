@@ -40,8 +40,10 @@ A simple and responsive to-do list web application built with **Nuxt 3**, **Vue 
     git clone https://github.com/0011Kit/todo-app.git
     cd todo-app
     npm install
-    npm install @iconify/vue
+    npm run dev 
+    
+    //only if necessary 
+    npm install @iconify/vue   
     npm install @nuxtjs/tailwindcss @pinia/nuxt
     npm install @vueuse/core
-    npm run dev 
 -->
