@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="text-4xl font-extrabold mb-4">My Activity</h1>
+        <h1 class="text-4xl font-extrabold mb-4 dark:text-gray-500">My Activity</h1>
     </div>
     <div class="min-h-screen flex flex-col items-center justify-center bg-card text-center p-6 rounded dark:bg-gray-800 dark:border-gray-700 dark:text-gray-500 dark:hover:text-gray-300">    
         <img

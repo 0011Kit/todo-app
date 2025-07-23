@@ -1,59 +1,19 @@
 <template>
   <div class="flex flex-col md:flex-row min-h-screen bg-background text-gray-800 dark:bg-gray-900 dark:text-gray-100">
     <!-- Sidebar start -->
-    <aside
-      v-if="showSidebar"
-      class="w-full md:w-64 bg-sidebar border-b md:border-b-0 md:border-r border-gray-200 p-4 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-500 dark:hover:text-gray-300"
+    <Sidebar :showSidebar="showSidebar" />
+    <!-- Sidebar toggle -->
+    <div
+      class="fixed bottom-4 left-4 z-50 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-full shadow-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+      @click="showSidebar = !showSidebar"
     >
-      <div class="flex flex-row items-center mb-6 px-2 gap-2">
-        <Icon icon="streamline-color:pie-chart-flat" width="20" height="20" />
-        <h2 class="text-xl font-semibold">My To-Do</h2>
-      </div>
-      <ul class="space-y-2">
-        <li>
-          <NuxtLink
-            to="/"
-            :class="[
-              'block px-3 py-2 rounded font-semibold',
-              (route.path === '/' || route.path === '/add-task')
-                ? 'bg-primary text-background dark:text-gray-900 dark:bg-slate-600'
-                : 'hover:bg-background dark:hover:bg-gray-700 dark:hover:text-white'
-            ]"
-          >
-            <Icon icon="tabler:home" width="20" height="20" class="inline-block mr-2" />
-            <span>My Task</span>
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink
-            to="/profile"
-            :class="[
-              'block px-3 py-2 rounded font-semibold',
-              route.path === '/profile'
-                ? 'bg-primary text-background dark:text-gray-900 dark:bg-slate-600'
-                : 'hover:bg-background dark:hover:bg-gray-700 dark:hover:text-white'
-            ]"
-          >
-            <Icon icon="tabler:user" width="20" height="20" class="inline-block mr-2" />
-            <span>My Profile</span>
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink
-            to="/activity"
-            :class="[
-              'block px-3 py-2 rounded font-semibold',
-              route.path === '/activity'
-                ? 'bg-primary text-background dark:text-gray-900 dark:bg-slate-600'
-                : 'hover:bg-background dark:hover:bg-gray-700 dark:hover:text-white'
-            ]"
-          >
-            <Icon icon="tabler:bike" width="20" height="20" class="inline-block mr-2" />
-            <span>My Activity</span>
-          </NuxtLink>
-        </li>
-      </ul>
-    </aside>
+      <Icon
+        :icon="showSidebar ? 'tabler:chevrons-left' : 'tabler:chevrons-right'"
+        width="28"
+        height="28"
+        class="dark:text-gray-200"
+      />
+    </div>
     <!-- Sidebar end -->
 
     <main class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 bg-background dark:bg-gray-900">
@@ -102,18 +62,7 @@
       <slot />
     </main>
 
-    <!-- Sidebar toggle (mobile only) -->
-    <div
-      class="fixed bottom-4 left-4 z-50 md:hidden bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-full shadow-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition"
-      @click="showSidebar = !showSidebar"
-    >
-      <Icon
-        :icon="showSidebar ? 'tabler:chevrons-left' : 'tabler:chevrons-right'"
-        width="28"
-        height="28"
-        class="dark:text-gray-200"
-      />
-    </div>
+    
   </div>
 </template>
 
@@ -123,7 +72,8 @@
   import { ref } from 'vue'
   import { Icon } from '@iconify/vue'
   import { useDarkMode } from '../../composables/useDarkMode'
-  
+ import Sidebar from '../../components/side-bar.vue'
+
   const { isDark, toggleDark } = useDarkMode()
   const showSidebar = ref(true)
   const route = useRoute()
