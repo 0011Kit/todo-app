@@ -7,7 +7,8 @@ A simple and responsive to-do list web application built with **Nuxt 3**, **Vue 
 - Vue 3
 - Tailwind CSS
 - Iconify
-- Picca – for localStorage management
+- Pinia – for localStorage management
+- @vueuse/core - for reactivity
 
 ## Features Implemented
 1. User Auth Simulation
@@ -41,5 +42,6 @@ A simple and responsive to-do list web application built with **Nuxt 3**, **Vue 
     npm install
     npm install @iconify/vue
     npm install @nuxtjs/tailwindcss @pinia/nuxt
+    npm install @vueuse/core
     npm run dev 
 -->
