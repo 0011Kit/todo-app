@@ -43,7 +43,7 @@
           <div class="flex items-center gap-3 text-gray-600 hover:text-primary font-bold dark:text-gray-500">
             <Icon icon="tabler:user-circle" width="25" height="25" />
             <!-- <span>{{ currentUser }}</span> -->
-            <span>'UserName'</span>
+            <span>UserName</span>
           </div>
 
           <div class="flex items-center gap-4">
